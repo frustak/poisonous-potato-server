@@ -13,7 +13,10 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const port = process.env.PORT || 4000;
 
-const corsOptions = { origin: 'http://localhost:3000' };
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://poisonous-potato.herokuapp.com/'],
+};
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(userRouter);
@@ -21,7 +24,6 @@ app.use(messageRouter);
 
 io.on('connection', socket => {
   socket.on('message', async (text, owner) => {
-    
     const message = new Message({ text, owner });
     await message.save();
     io.emit('message', message);
