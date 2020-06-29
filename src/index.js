@@ -14,7 +14,7 @@ const io = socketIO(server);
 const port = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://poisonous-potato.herokuapp.com/'],
+  origin: ['http://localhost:3000', 'https://poisonous-potato.herokuapp.com'],
 };
 
 app.use(cors(corsOptions));
